@@ -33,19 +33,19 @@ class Builder{
 		
 	}
 	
-	//Copy $source/* to $destination
-	private function copy_dir($source, $destination){
-			if(!is_dir($destination)){
-					mkdir($destination,0777);
+	//Copy $src/* to $dest
+	private function copy_dir($src, $dest){
+			if(!is_dir($dest)){
+					mkdir($dest,0777);
 				}
-			$handle=dir($source);
+			$handle=dir($src);
 			while($entry=$handle->read()) {
-				if(($entry!=".")&&($entry!="..")){
-					if(is_dir($source."/".$entry)){
-							$this->copy_dir($source."/".$entry,$destination."/".$entry,$child);
+				if(($entry != ".") && ($entry != "..")){//Filter out . and .. 
+					if(is_dir($src."/".$entry)){
+							$this->copy_dir($src."/".$entry,$dest."/".$entry);
 						}
 					else{
-						copy($source."/".$entry,$destination."/".$entry);
+						copy($src."/".$entry,$dest."/".$entry);
 					}
 				}
 			}

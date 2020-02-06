@@ -34,10 +34,15 @@
 			echo("  -c         => Compress for less size\n");
 			break;
 		case 'build':
-		case"Build":
+		case "Build":
 			require("lib/build.php");
 			$builder = new Builder();
 			$builder->build();
+			break;
+		case 'create':
+		case "Create":
+			require("lib/create.php");
+			
 			break;
 		default:
 			echo("Unknown command {$argv[1]}!\n");
