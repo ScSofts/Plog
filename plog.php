@@ -33,6 +33,12 @@
 			echo(" For build: \n");
 			echo("  -c         => Compress for less size\n");
 			break;
+		case 'build':
+		case"Build":
+			require("lib/build.php");
+			$builder = new Builder();
+			$builder->build();
+			break;
 		default:
 			echo("Unknown command {$argv[1]}!\n");
 			echo("Use php plog.php -h or php plog.php --help for help\n");
