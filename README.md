@@ -6,7 +6,7 @@
 This is a static blog system using php language.Compared to Node.js,it depends less and run faster.
 
 
-Install: 
+°²×°(Install): 
 ```Bash
 git clone https://github.com/ScSofts/Plog.git
 ```
