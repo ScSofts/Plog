@@ -7,8 +7,8 @@
 * @Method delete
 * @Method count
 * @Method search
-* @Setting user
-* @Setting secret
+* @Setting user Must be set
+* @Setting secret Must be set
 */
 var WebDataBase = {
 	/*
@@ -18,7 +18,7 @@ var WebDataBase = {
 	init:function(){
 		this.handle =new XMLHttpRequest();
 	},
-	/*
+	/**
 	* Private function
 	* @function ajax
 	*/
@@ -36,11 +36,13 @@ var WebDataBase = {
 		});
 		this.handle.send(requetsData);
 	},
-	/*
+	/**
 	* To update or set the value of the key
 	* @funcion update
 	* @param {string} key  The key to set
-	* @param {string} key  The value
+	* @param {string} value  The value
+	* @param {function} OnSuccess(responseText)
+	* @param {function} OnError(status)
 	*/
 	update:function(key,value,success,error){
 		
@@ -54,6 +56,13 @@ var WebDataBase = {
 		});
 	},
 	
+	/**
+	* To get the value of the key
+	* @function get
+	* @param {string} key The key to get
+	* @param {function} OnSuccess(responseText)
+	* @param {function} OnError(status)
+	*/
 	get:function(key,success,error){
 		this.ajax({"action":"get","tag":key},function(){
 			if(this.handle.readyState === 4 && this.handle.status !== 200){
@@ -65,7 +74,11 @@ var WebDataBase = {
 		});
 		
 	},
-	
+	/**
+	* To delete a key
+	* @function delete
+	* @param {string} key The key to delete
+	*/
 	delete:function(key,success,error){
 		this.ajax({"action":"get","tag":key},function(){
 			if(this.handle.readyState === 4 && this.handle.status !== 200){
@@ -77,7 +90,12 @@ var WebDataBase = {
 		});
 		
 	},
-	
+	/**
+	* To get the count of the database
+	* @function count
+	* @param {function} success OnSuccess(responseText)
+	* @param {function} error OnError(status)
+	*/
 	count:function(success,error){
 		this.ajax({"action":"count"},function(){
 			if(this.handle.readyState === 4 && this.handle.status !== 200){
@@ -88,7 +106,14 @@ var WebDataBase = {
 			}
 		});
 	},
-	
+	/**
+	* To search the database
+	* @function search
+	* @param {string} key_or_value  The keyword to search
+	* @param {string} type  Choose in {tag,value,both},the search type
+ 	* @param {function} success OnSuccess(responseText)
+	* @param {function} error OnError(status)
+	*/
 	search:function(key_or_value,type,start,success,error){
 		this.ajax({"action":"search","tag":key_or_value,"no":start,"type":type},function(){
 			if(this.handle.readyState === 4 && this.handle.status !== 200){
@@ -99,14 +124,14 @@ var WebDataBase = {
 			}
 		});
 	},
-	//XMLHttpRequest Object
+	//Private XMLHttpRequest Object
 	handle:null,
-	//The api location
+	//Private The api location
 	api:"http://tinywebdb.appinventor.space/api",
 	
-	//User Defined: The username of the database
+	//Public User Defined: The username of the database
 	user:"",
-	//User Defined: The password of the database
+	//Public User Defined: The password of the database
 	secret:""
 };
 
