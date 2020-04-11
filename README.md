@@ -23,18 +23,16 @@ English/Chinese
 2. Create project/创建工程
 
     ```bash
-    mkdir MyBlog
-    cd MyBlog
-    php Plog\plog.php create
+    php Plog\plog.php create demo
     ```
-
+    
 3. Write your blog with Markdown/使用Markdown语言书写Blog
 
 4. Build the project and preview/构建并预览工程
 
    ```bash
-   php Plog\plog.php build
-   php Plog\plog.php preview
+   php Plog\plog.php build demo
+   php Plog\plog.php preview demo
    ```
 
 ## Support:

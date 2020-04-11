@@ -6,9 +6,9 @@
 		
 		echo("Wrong useage!\n");
 		echo("Plog can`t run in the browser!\n");
-		echo("Use php plog.php -h or php plog.php --help for help\n");
+		echo("Use \`php plog.php\` -h or \`php plog.php\` --help for help\n");
 		echo("Plog V{$version} By Sc\n");
-		die("Github https://github.com/ScSofts/Plog.git\n");
+		die("GitHub https://github.com/ScSofts/Plog.git\n");
 		exit(-1);
 	}
 
@@ -17,7 +17,7 @@
 		case '-h':
 		case '--help':
 			echo("Plog V{$version} By Sc\n");
-			echo("Github https://github.com/ScSofts/Plog.git\n");
+			echo("GitHub https://github.com/ScSofts/Plog.git\n");
 			echo("Usage php plog.php <Command> [Options]\n");
 			echo("Commands: \n");
 			echo(" build      => Generate or update static files\n");
@@ -38,16 +38,18 @@
 			require("lib/build.php");
 			$builder = new Builder();
 			$builder->build();
+			exit(0);
 			break;
 		case 'create':
 		case "Create":
 			require("lib/create.php");
-			
+			$crateor = new Creator($argc,$argv);
+			exit(0);
 			break;
 		default:
 			echo("Unknown command {$argv[1]}!\n");
 			echo("Use php plog.php -h or php plog.php --help for help\n");
 			echo("Plog V{$version} By Sc\n");
-			die("Github https://github.com/ScSofts/Plog.git\n");
+			die("GitHub https://github.com/ScSofts/Plog.git\n");
 	}
 ?>

@@ -1,7 +1,11 @@
-<?php
+<?php /** @noinspection PhpParamsInspection */
 /*
 *Plog build helper By S·c
 */
+
+/**
+ * Class Builder
+ */
 class Builder{
 	
 	public function __construct(){
@@ -25,7 +29,7 @@ class Builder{
 			die("Build failed!\n");				
 			}else{
 				$static = dir("static");
-				while($entry = $static->read() != false){
+                while(($entry = $static->read()) != false){
 					$this->copy_dir("static","publish");
 				}
 			}
@@ -34,13 +38,18 @@ class Builder{
 	}
 	
 	//Copy $src/* to $dest
-	private function copy_dir($src, $dest){
+
+    /**
+     * @param $src {string}
+     * @param $dest {$string}
+     */
+    private function copy_dir($src, $dest){
 			if(!is_dir($dest)){
 					mkdir($dest,0777);
 				}
 			$handle=dir($src);
-			while($entry=$handle->read()) {
-				if(($entry != ".") && ($entry != "..")){//Filter out . and .. 
+			while(($entry=$handle->read()) != false) {
+				if(($entry != ".") && (".." != $entry)){//Filter out . and ..
 					if(is_dir($src."/".$entry)){
 							$this->copy_dir($src."/".$entry,$dest."/".$entry);
 						}
